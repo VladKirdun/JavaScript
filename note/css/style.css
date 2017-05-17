@@ -1,0 +1,80 @@
+body, html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.board {
+	width: 100%;
+	height: 100%;
+	background: rgb(232, 184,49);
+	box-shadow: 0 0 150px rgba(196, 146, 21, 1) inset;
+	position: relative;
+}
+
+.newnote {
+	border: 0;
+	position: fixed;
+	right: 10px;
+	top: 10px;
+	padding: 2px 12px;
+	outline: none;
+	font-weight: bold;
+	font-size: 26px;
+	z-index: 10;
+	background-color: #479B45;
+	color: #fff;
+	border-radius: 3px;
+	border: 1px solid #40833C;
+}
+
+.newnote:active {
+	background-color: #5BB65D;
+	border: 1px solid #4BAC4D;
+}
+
+.note {
+	position: fixed;
+	width: 200px;
+	height: 200px;
+	font: 16px Arial;
+	background: linear-gradient(rgb(216, 215, 85), rgb(250, 248, 45));
+	box-shadow: 5px 0 10px rgb(203, 160, 41);
+	/*-webkit-transform-origin: center center;
+	transform-origin: center center;
+	-webkit-transform: rotate(-10deg);*/
+	/*transform: rotate(-10deg);*/
+	margin: 20px;
+}
+
+.note:hover {
+	cursor: pointer;
+}
+
+.note div {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.note textarea {
+	position: absolute;
+	width: 100%;
+	height: 80%;
+	resize: none;
+	box-sizing: border-box;
+	display: none;
+}
+
+.toup {
+	z-index: 100;
+}
+
+#fly {
+	position: fixed;
+	height: 50px;
+	width: 50px;
+	background-color: #000;
+}

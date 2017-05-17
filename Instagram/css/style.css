@@ -1,0 +1,146 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#container {
+	position: relative;
+	width: 360px;
+	text-align: center;
+	color: white;
+	margin: 0 auto 120px;
+	text-shadow: 1px 1px 1px grey;
+	font-size: 18px;
+	font-family: Georgia;
+	overflow: hidden;
+}
+
+.h3 {
+	padding: 15px;
+}
+
+img {
+	width: 100%;
+}
+
+.likes {
+	width: 50px;
+	height: 50px;
+	background: grey;
+	float: right;
+	line-height: 50px;
+}
+
+.likes:hover {
+	cursor: pointer;
+}
+
+.item {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 5px;
+	background: lightgrey;
+	overflow: auto;
+	margin-bottom: 10px;
+}
+
+.comments {
+	padding: 15px;
+	width: 265px;
+	font-size: 16px;
+	outline: none;
+	border: 1px solid grey;
+	border-radius: 3px;
+	background-color: lightgrey;
+	color: grey;
+}
+
+.comments:focus {
+	background-color: #ddd;
+}
+
+::-webkit-input-placeholder { 
+	color: #FFF; 
+	text-shadow: 1px 1px 1px grey;
+}
+
+.ulHide {
+	position: absolute;
+	margin-left: 1px;
+	text-align: left;
+	list-style: none;
+	display: none;
+	border: 1px solid grey;
+	border-top: none;
+	width: 295px;
+	background-color: #A3A3A5;
+	border-radius: 0 0 3px 3px;
+}
+
+.ulHide li {
+	border-bottom: 1px solid grey;
+	padding: 5px;
+	transition: 0.3s;
+}
+
+.ulHide li:last-child {
+	border-bottom: none;
+}
+
+.ulHide li:hover {
+	cursor: pointer;
+	background-color: #B9B9BB;
+	padding: 5px 0 5px 12px;
+}
+
+.blockForComments {
+	border-radius: 3px;
+	margin: 3px 1px 1px;
+	background-color: #B9B9BB;
+}
+
+.blockForComments p {
+	text-align: left;
+	padding: 5px;
+	border: 1px solid grey;
+	border-top: 0;
+}
+
+.blockForComments p:first-child {
+	border-top: 1px solid grey;
+	border-radius: 3px 3px 0 0;
+}
+
+.blockForComments p:last-child {
+	border-radius: 0 0 3px 3px;
+}
+
+.lineScroll {
+	color: black;
+	line-height: 200%;
+	font-size: 24px;
+	height: 50px;
+	width: 200px;
+	border: 2px solid red;
+}
+
+.fly {
+	position: relative;
+	width: 600px;
+	height: 100px;
+	background: grey;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+.fly img {
+	float: left;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;;
+	margin: 7px 17px;
+	border: 3px solid #fff;
+	background-size: cover;
+}

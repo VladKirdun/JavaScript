@@ -1,92 +1,133 @@
 var board = document.getElementById("board");
-var addBtn = document.getElementById("newnote");
+var addNote = document.getElementById("newnote");
+var html = document.documentElement;
+
+function createNote(){
+
+	var wrap = document.createElement("div");
+	wrap.setAttribute("class", "note");
+	wrap.style.left = getRandomInt(0, html.clientWidth - 300) + "px";
+	wrap.style.top = getRandomInt(0, html.clientHeight - 300) + "px";
+	wrap.style.transform = "rotate(" + getRandomInt(-10, 10) + "deg)";
+
+	var overWrap = document.createElement("div");
+	overWrap.setAttribute("class", "overWrap");
+
+	var overWrapTextArea = document.createElement("textarea");
+	overWrapTextArea.setAttribute("class", "overWrapTextArea");
+	overWrapTextArea.setAttribute("readonly", "readonly");
+	overWrapTextArea.value = "New Note";
+	
+	var wrapTextArea = document.createElement("textarea");
+	wrapTextArea.setAttribute("class", "wrapTextArea");
+	wrapTextArea.value = overWrapTextArea.value;
+
+	var buttonSave = document.createElement("button");
+	buttonSave.setAttribute("class", "buttonSave");
+	buttonSave.addEventListener("click", function(){
+		overWrap.style.display = "block";
+		overWrapTextArea.value = wrapTextArea.value;
+	});
+
+	var imgSave = document.createElement("img");
+	imgSave.setAttribute("src", "images/save.png");
+
+	var buttonMod = document.createElement("button");
+	buttonMod.setAttribute("class", "buttonMod");
+	buttonMod.addEventListener("click", function(){
+		overWrap.style.display = "none";
+	});
+
+	var imgMod = document.createElement("img");
+	imgMod.setAttribute("src", "images/pencil.png");
+
+	var buttonDel = document.createElement("button");
+	buttonDel.setAttribute("class", "buttonDel");
+	buttonDel.addEventListener("click", function(){
+		board.removeChild(wrap);
+	});
+
+	var imgDel = document.createElement("img");
+	imgDel.setAttribute("src", "images/trashCan.png");
+
+	buttonSave.appendChild(imgSave);
+	buttonMod.appendChild(imgMod);
+	buttonDel.appendChild(imgDel);
+
+	overWrap.appendChild(overWrapTextArea);
+	overWrap.appendChild(buttonMod);
+	overWrap.appendChild(buttonDel);
+
+	wrap.appendChild(overWrap);
+	wrap.appendChild(wrapTextArea);
+	wrap.appendChild(buttonSave);
+
+	board.appendChild(wrap);
+
+	for(var i = 0; i < board.children.length; i++){
+		board.children[i].addEventListener("mousedown", startDrag);
+	}
+
+}
+
+addNote.addEventListener("click", createNote);
 
 var deltaX;
 var deltaY;
 
-var notaDataArr = [];
+var notes = document.getElementsByClassName("note");
 
-function NoteData(){
-	this.text = "Add text here";
-	this.pos = [getRandomInt(0, screen.width-300), getRandomInt(0, screen.height-300)];
-};
+function startDrag(e) {
+	var parentElement = e.target.parentElement.parentElement;
+	var parentElementClass = parentElement.getAttribute("class");
+	if(parentElementClass == "note" && e.target.tagName != "IMG" && e.target.tagName != "BUTTON"){
+		
+		for(var i = 0; i < notes.length; i++) {
+			notes[i].style.zIndex = 1;
+		}
+		parentElement.style.zIndex = 10;
 
-function Note( data, parentIndex, parentArray ) {
-	this.parIndex = parentIndex;
-	this.parArray = parentArray;
-	this.text = data.text;
-	this.posX = data.pos[0];
-	this.posY = data.pos[1];
-	this.startDrag = function(e) {
-		var parEl = e.target.parentElement;
 		e.preventDefault();
-		var mouseX = e.pageX;
-		var mouseY = e.pageY;
-		var divOffsetLeft = parEl.offsetLeft;
-		var divOffsetTop = parEl.offsetTop;
-		deltaX = mouseX - divOffsetLeft;
-		deltaY = mouseY - divOffsetTop;
-		this.move = function(e) {
+		deltaX = e.pageX - parentElement.offsetLeft;
+		deltaY = e.pageY - parentElement.offsetTop;
+
+		function move(e) {
 			var pX = e.pageX;
 			var pY = e.pageY;
-			parEl.style.left = (pX - deltaX - 20) + "px";
-			parEl.style.top = (pY - deltaY - 20) + "px";
-			this.stopDrag = function(e) {
-				window.removeEventListener("mousemove", this.move);
+			parentElement.style.left = (pX - deltaX) + "px";
+			parentElement.style.top = (pY - deltaY) + "px";
+
+			function stopDrag(e) {
+				window.removeEventListener("mousemove", move);
+			};
+
+			window.onmouseup = stopDrag;
+			
+			if(parentElement.offsetLeft < 20) {
+				parentElement.style.left = 20 + "px";
+			} 
+			else if(parentElement.offsetLeft > html.clientWidth - 220) {
+				parentElement.style.left = html.clientWidth - 220 + "px";
 			}
-			parEl.onmouseup = this.stopDrag;
-		}
-		window.addEventListener("mousemove", this.move);
-	}
+			else if(parentElement.offsetTop < 20) {
+				parentElement.style.top = 20 + "px";
+			}
+			else if(parentElement.offsetTop > html.clientHeight - 220) {
+				parentElement.style.top = html.clientHeight - 220 + "px";
+			}
 
-	this.render = function() {
-		var divNote = document.createElement("div");
-		divNote.className = "note";
-		divNote.style.transform = "rotate(" + getRandomInt(-10, 10) + "deg)";
-		var divText = document.createElement("div");
-		divText.textContent = this.text;
-		var textarea = document.createElement("textarea");
-		textarea.onchange = function(e) {
-			this.text = e.target.value;
-			this.parArray[this.parIndex].text = this.text;
-			console.log(this.parArray);
-		}.bind(this);
-		
-		divNote.onclick = function(e){
-			var elem = e.target.parentElement.children;
-			elem[1].style.display = "block";
-		};
-		divNote.onmousedown = this.startDrag;
-		
-		var innerFunc = function() {
-			console.log(this);
 		};
 
-		divNote.appendChild(divText);
-		divNote.appendChild(textarea);
-		divNote.style.left = this.posX + "px";
-		divNote.style.top = this.posY + "px";
-		return divNote
+		function stopDrag(e) {
+			window.removeEventListener("mousemove", move);
+		};
+
+		window.onmouseup = stopDrag;
+			
+		window.addEventListener("mousemove", move);
 	}
-};
-
-function addData() {
-	var newData = new NoteData();
-	notaDataArr.push(newData);
-};
-
-function createNote() {
-	board.innerHTML = "";
-	notaDataArr.map(function(item, index, arr) {
-		board.appendChild(new Note(item, index, arr).render());
-	});	
 };
 
 function getRandomInt(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-addBtn.onclick = function() {
-	addData();
-	createNote();
 }

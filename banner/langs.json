@@ -1,0 +1,39 @@
+{
+	"langs": [
+		{
+			"lang": "en",
+			"quote": "keep private photos & videos secure",
+			"trial": "30 days free trial"
+		},
+		{
+			"lang": "es",
+			"quote": "Mantén Seguras Tus Fotos y Vídeos Privados",
+			"trial": "Prueba gratuita de 7 días"
+		},
+		{
+			"lang": "de",
+			"quote": "Halten Sie Ihre privaten Fotos & Videos geheim",
+			"trial": "7-tägige Gratis-Version"
+		},
+		{
+			"lang": "fr",
+			"quote": "Protégez Vos Photos et Vidéos Privées",
+			"trial": "7 jours d'essai gratuit"
+		},
+		{
+			"lang": "ja",
+			"quote": "プライベート写真と 動画を安全に 保つ",
+			"trial": "7日間無料トライアル"
+		},
+		{
+			"lang": "it",
+			"quote": "Tieni al Sicuro i Tuoi Video e Foto Private",
+			"trial": "Prova gratuita di 7 giorni"
+		},
+		{
+			"lang": "ru",
+			"quote": "Держите Личные Фото и Видео под Надежной Защитой",
+			"trial": "7-дневная пробная версия"
+		}
+	]
+}

@@ -1,0 +1,132 @@
+
+@font-face {
+	font-family: 'Catamaran';
+	src: url('../fonts/Catamaran-Regular.eot');
+	src: url('../fonts/Catamaran-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Catamaran-Regular.woff') format('woff'),
+		url('../fonts/Catamaran-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Rubik';
+	src: url('../fonts/Rubik-Regular.eot');
+	src: url('../fonts/Rubik-Regular.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/Rubik-Regular.woff') format('woff'),
+		url('../fonts/Rubik-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+ -webkit-text-size-adjust: 100%;
+ -moz-text-size-adjust: 100%;
+ -ms-text-size-adjust: 100%;
+}
+
+.wrap {
+	position: relative;
+	overflow: hidden;
+}
+
+.wrap__background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 115%;
+}
+
+.wrap__select {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+	padding: 0 5px;
+	border-radius: 4px;
+	color: #FA9C00;
+	border: 1px solid #FA9C00;
+	outline: none;
+	font-size: 16px;
+	background-color: #000;
+	font-family: "Catamaran", Arial, sans-serif;
+}
+
+.wrap__main-phone {
+	float: left;
+	display: inline-block;
+	width: 33%;
+	height: 100%;
+	position: relative;
+}
+
+.wrap__main-phone > img {
+	position: absolute;
+	height: 80%;
+	top: 50%;
+	right: 0;
+	-webkit-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	transform: translate(0, -50%);
+}
+
+.wrap__main {
+	position: absolute;
+	height: 50%;
+	width: 100%;
+	bottom: 0;
+	overflow: hidden;
+	background: linear-gradient(to bottom, transparent, #1B2328);
+	box-sizing: border-box;
+	z-index: 10;
+}
+
+.wrap__main-text {
+	float: left;
+	display: inline-block;
+	width: 67%;
+	height: 100%;
+	line-height: 1;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.wrap__main-text-wrap {
+	position: absolute;
+	padding-left: 55px;
+	padding-right: 50px;
+	height: 80%;
+	top: 50%;
+	left: 0;
+	-webkit-transform: translate(0, -50%);
+	-moz-transform: translate(0, -50%);
+	transform: translate(0, -50%);
+}
+
+.wrap__main-text-wrap > img {
+	margin-bottom: 50px;
+	width: 170px;
+	height: auto;
+	border-radius: 35px;
+}
+
+#quote {
+	font-family: "Catamaran", Arial, sans-serif;
+	font-size: 70px;
+	color: #fff;
+	font-style: normal;
+	font-weight: normal;
+}
+
+#trial {
+	font-family: "Rubik", Arial, sans-serif;
+	font-size: 60px;
+	color: #FA9C00;
+	font-style: normal;
+	font-weight: normal;
+}
